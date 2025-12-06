@@ -1,308 +1,90 @@
-import React, { useState } from 'react';
-import { ArrowRight, FileText, BarChart3, Database, Bell, Shield, Target, Users } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site – GitHub Pages</title>
 
-export default function ThinkTankLanding() {
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    instituicao: '',
-    newsletter: false
-  });
-  const [submitted, setSubmitted] = useState(false);
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
+        /* Navbar */
+        nav {
+            background: #111;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
+        nav .logo {
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
 
-  return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-transparent"></div>
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <div className="mb-8">
-            <div className="inline-block px-4 py-2 bg-blue-600/20 rounded-full border border-blue-600/30 mb-6">
-              <span className="text-blue-400 text-sm font-medium">Inteligência Estratégica</span>
-            </div>
-          </div>
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-            Instituto de<br />
-            <span className="text-blue-600">Análise Estratégica</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Transformamos dados complexos em inteligência aplicada para tomada de decisão institucional e formulação de políticas públicas baseadas em evidência
-          </p>
-          <button 
-            onClick={() => document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })}
-            className="group inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 transform hover:scale-105"
-          >
-            Receber Briefing Semanal
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-      </section>
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
 
-      {/* Quem Somos */}
-      <section className="py-24 px-6 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-12">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Propósito Institucional</span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">Quem Somos</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                Somos um centro independente de pesquisa aplicada, dedicado à produção de conhecimento estratégico para apoiar gestores públicos, organizações e sociedade civil na compreensão de fenômenos complexos.
-              </p>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Combinamos rigor acadêmico com agilidade operacional, traduzindo análises sofisticadas em recomendações práticas e acionáveis.
-              </p>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <Target className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Missão</h3>
-                  <p className="text-gray-400">Produzir inteligência estratégica que amplifique a capacidade de decisão baseada em evidência</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <Shield className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Valores</h3>
-                  <p className="text-gray-400">Independência, rigor metodológico, transparência e compromisso com o interesse público</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <Users className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Para Quem</h3>
-                  <p className="text-gray-400">Gestores públicos, organizações multilaterais, think tanks parceiros e formuladores de política</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-      {/* Produtos & Entregáveis */}
-      <section className="py-24 px-6 bg-gray-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-16 text-center">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">O Que Produzimos</span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">Produtos & Entregáveis</h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Formatos flexíveis de inteligência estratégica, adaptados às necessidades de cada stakeholder
-            </p>
-          </div>
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-black/50 border border-gray-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300 group">
-              <FileText className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-3">Relatórios Estratégicos</h3>
-              <p className="text-gray-400 leading-relaxed">Análises aprofundadas de temas complexos com recomendações práticas para implementação</p>
-            </div>
+        /* Conteúdo principal */
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
 
-            <div className="bg-black/50 border border-gray-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300 group">
-              <Database className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-3">Observatórios Temáticos</h3>
-              <p className="text-gray-400 leading-relaxed">Monitoramento contínuo de indicadores-chave em segurança, economia e políticas públicas</p>
-            </div>
+        h1 {
+            font-size: 32px;
+        }
 
-            <div className="bg-black/50 border border-gray-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300 group">
-              <BarChart3 className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-3">Dashboards Interativos</h3>
-              <p className="text-gray-400 leading-relaxed">Visualizações dinâmicas de dados para acompanhamento em tempo real</p>
-            </div>
+        p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
 
-            <div className="bg-black/50 border border-gray-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300 group">
-              <Bell className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-3">Briefings Semanais</h3>
-              <p className="text-gray-400 leading-relaxed">Sínteses executivas das principais tendências e eventos estratégicos</p>
-            </div>
+<body>
 
-            <div className="bg-black/50 border border-gray-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300 group">
-              <FileText className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-3">Notas Técnicas</h3>
-              <p className="text-gray-400 leading-relaxed">Análises rápidas de conjuntura para apoio a decisões urgentes</p>
-            </div>
+    <!-- NAVBAR -->
+    <nav>
+        <a class="logo" href="index.html">Meu Site</a>
 
-            <div className="bg-black/50 border border-gray-800 rounded-xl p-8 hover:border-blue-600/50 transition-all duration-300 group">
-              <Database className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-3">Dossiês Temáticos</h3>
-              <p className="text-gray-400 leading-relaxed">Compilações estruturadas sobre temas de alta relevância estratégica</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
 
-      {/* Metodologia */}
-      <section className="py-24 px-6 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Como Trabalhamos</span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">Metodologia</h2>
-            <p className="text-gray-400 text-lg">
-              Nosso framework combina múltiplas abordagens para garantir análises robustas e imparciais
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-blue-600/30 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">1</div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Triangulação de Fontes</h3>
-                  <p className="text-gray-400">Cruzamento de dados primários, secundários e evidências qualitativas para validação</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-blue-600/30 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">2</div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Análise Multinível</h3>
-                  <p className="text-gray-400">Integração de perspectivas micro, meso e macro para compreensão sistêmica</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-blue-600/30 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">3</div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Revisão por Pares</h3>
-                  <p className="text-gray-400">Todos os produtos passam por validação interna antes da publicação</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-blue-600/30 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">4</div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Transparência Metodológica</h3>
-                  <p className="text-gray-400">Documentação completa de fontes, limitações e pressupostos analíticos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contato & Newsletter */}
-      <section id="contato" className="py-24 px-6 bg-black">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-12 text-center">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wider">Entre em Contato</span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">Receba Nossa Inteligência</h2>
-            <p className="text-gray-400 text-lg">
-              Cadastre-se para receber briefings semanais e acesso prioritário aos nossos relatórios
-            </p>
-          </div>
-
-          <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium mb-2 text-gray-300">Nome Completo</label>
-                <input
-                  type="text"
-                  name="nome"
-                  value={formData.nome}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg focus:outline-none focus:border-blue-600 transition-colors text-white"
-                  placeholder="Seu nome"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2 text-gray-300">Email Institucional</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg focus:outline-none focus:border-blue-600 transition-colors text-white"
-                  placeholder="seu@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2 text-gray-300">Instituição</label>
-                <input
-                  type="text"
-                  name="instituicao"
-                  value={formData.instituicao}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black border border-gray-700 rounded-lg focus:outline-none focus:border-blue-600 transition-colors text-white"
-                  placeholder="Nome da sua organização"
-                />
-              </div>
-
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  name="newsletter"
-                  id="newsletter"
-                  checked={formData.newsletter}
-                  onChange={handleChange}
-                  className="w-5 h-5 rounded border-gray-700 bg-black text-blue-600 focus:ring-blue-600 focus:ring-offset-0"
-                />
-                <label htmlFor="newsletter" className="text-gray-300">
-                  Quero receber o Briefing Semanal
-                </label>
-              </div>
-
-              <button
-                onClick={handleSubmit}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center gap-2"
-              >
-                {submitted ? 'Cadastro Realizado!' : 'Enviar Cadastro'}
-                {!submitted && <ArrowRight className="w-5 h-5" />}
-              </button>
-
-              {submitted && (
-                <p className="text-center text-green-500 text-sm">
-                  ✓ Obrigado! Em breve você receberá nosso primeiro briefing.
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 px-6 bg-gray-900 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-400">
-            © 2024 Instituto de Análise Estratégica. Todos os direitos reservados.
-          </p>
-          <p className="text-gray-500 text-sm mt-2">
-            Inteligência aplicada para decisões que importam.
-          </p>
-        </div>
-      </footer>
+    <!-- CONTEÚDO -->
+    <div class="container">
+        <h1>Bem-vindo ao Meu Site!</h1>
+        <p>
+            Este é um site simples criado para demonstrar como usar múltiplas páginas no GitHub Pages.
+            Você pode navegar pelo menu acima para testar as outras páginas.
+        </p>
     </div>
-  );
-}
+
+</body>
+</html>
